@@ -4,7 +4,7 @@
 ## To use
 1. Edit **setup_sample.json** to change the paths to your source and targeted folder. Then, rename to *setup.json*.
 
-   - items: types of files you will sync. Feel free to change.
+   - items: types of files you will sync. Feel free to change, but if you add anything make sure the paths are set in fp1. fp2, etc.
    - fp1: Source files on local server
    - fp2: Target folder #1 in remote server
    - fp3: Target folder #2 in remote server
