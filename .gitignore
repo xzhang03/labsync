@@ -1,32 +1,12 @@
-# Prerequisites
-*.d
+# ASV
+*.asv
 
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
+# Personal setup
+setup.json
 
-# Precompiled Headers
-*.gch
-*.pch
+# Compiled mex file
+*.mexw64
 
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
+# Older stuff
+old
 
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
-*.exe
-*.out
-*.app
