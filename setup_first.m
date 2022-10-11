@@ -18,21 +18,27 @@ end
 if ~exist('setup.json', 'file')
     fprintf('Setup.json is not found.\n');
 else
-    fprintf('Setup.json is found.\n');
+    fprintf('Setup.json is found');
+    testjson = loadsyncsetup('setup.json');
+    fprintf(' and tested.\n');
 end
 
 % whitelist
 if ~exist('whitelist.json', 'file')
     fprintf('whitelist.json is not found.\n');
 else
-    fprintf('whitelist.json is found.\n');
+    fprintf('whitelist.json is found');
+    testjson = loadsyncsetup('whitelist.json');
+    fprintf(' and tested.\n');
 end
 
 % Blacklist
 if ~exist('blacklist.json', 'file')
     fprintf('blacklist.json is not found.\n');
 else
-    fprintf('blacklist.json is found.\n');
+    fprintf('blacklist.json is found');
+    testjson = loadsyncsetup('blacklist.json');
+    fprintf(' and tested.\n');
 end
 
 %% Check setup
