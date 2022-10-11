@@ -1,0 +1,40 @@
+{
+    "fp1":
+        {
+            "comment": "Source folder",
+            "micename": "SZ",
+            "twop": "\\\\nasquatch\\data\\2p\\YOURNAME",
+            "photometry": "\\\\anastasia\\data\\photometry",
+            "histology": "\\\\anastasia\\data\\histology\\YOURNAME",
+            "videos": "\\\\anastasia\\data\\videos\\YOURNAME",
+            "ephys": "\\\\anastasia\\data\\ephys\\YOURNAME"
+        },
+    "fp2":
+        {
+            "comment": "Target folder 1",
+            "enable": false,
+            "micename": "SZ",
+            "twop": "R:\\Andermann_Lab_Archive\\active\\2photon\\YOURNAME",
+            "photometry": "R:\\Andermann_Lab_Archive\\active\\Photometry Experiments",
+            "histology": "R:\\Andermann_Lab_Archive\\active\\histology\\YOURNAME",
+            "videos": "R:\\Andermann_Lab_Archive\\active\\videos\\YOURNAME",
+            "ephys": "R:\\Andermann_Lab_Archive\\active\\ephys\\YOURNAME"
+        },
+    "fp3":
+        {   
+            "comment": "Target folder 2",
+            "enable": true,
+            "micename": "SZ",            
+            "twop": "R:\\XX_p1\\2photon",
+            "photometry": "R:\\XX_p1\\Photometry Experiments",
+            "histology": "R:\\XX_p1\\histology",
+            "videos": "R:\\XX_p1\\videos",
+            "ephys": "R:\\XX_p1\\ephys"
+        },
+    "mousefolder": 
+        [
+            "SZ\\d*",
+            "XX\\d*"
+        ],
+    "reportfp": "D:\\User Folders\\YOURNAME\\File matching\\"
+}
