@@ -32,6 +32,7 @@ Done:
 
 To do:
  - Turn foldersync_automove into subfunctions - easy
+ - Cautiously give foldersync_automove the ability to make new folders in the right places - easy
  - Turn folder_rewind into subfunctions - easy
  - Make "Rescan target" more efficient by avoiding scanning the entire target folder somehow (this is in foldersync.m). - medium
  - Enable differential mode of scanning (avoid scanning files that are already scanned). - hard
