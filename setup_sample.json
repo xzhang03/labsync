@@ -1,4 +1,12 @@
 {
+    "items": 
+        [
+            "twop",
+            "photometry",
+            "histology",
+            "videos",
+            "ephys"
+        ],
     "fp1":
         {
             "comment": "Source folder",
