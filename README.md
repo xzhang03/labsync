@@ -20,10 +20,10 @@
    - Not listed => Toss, but will tell you which ones are unlisted so you can add them to the list next time
    - On both list => Toss, but please don't do this to avoid confusion
    
-4. Run **Setup_first.m** to compile [mMD5.c](https://www.mathworks.com/matlabcentral/fileexchange/7919-md5-in-matlab). This setup may require Mingw-w64 on some computers. This step also checks the json files and the paths.
+4. Run **Setup_first.m** to compile [mMD5.c](https://www.mathworks.com/matlabcentral/fileexchange/7919-md5-in-matlab)(already in this repo). This setup may require Mingw-w64 on some computers. This step also checks the json files and the paths.
 
 5. You can now run the main **foldersync.m** function to get things started. I recommend only whitelisting 1 mouse or so to start and use a private target folder (to avoid scanning files that are not useful).
-   > Comparison is made by hashing 1) filename, 2) filesize, 3) mousename, 4) SHA256 hashes first 100 bytes (default) of large files (>1GB, dafault).
+   > Comparison is made by MD5 hashing 1) filename, 2) filesize, 3) mousename, 4) SHA256 hashes of first 100 bytes (default) of large files (>1GB, dafault).
 
 ## Progress:
 Done:
