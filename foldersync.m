@@ -371,6 +371,12 @@ for ii = 1 : length(items)
                 [m1, m2] = regexp(fl2_temp(i).name, setup.mousefolder);
 
                 if ~isempty(m1)
+                    % If regex returns a cell even though the output is a
+                    % single lement get convert the values to a numberic
+                    if length(m1) == 1
+                        m1 = cell2mat(m1);
+                        m2 = cell2mat(m2);
+                    end
                     fl2_temp(i).mouse = fl2_temp(i).name(m1:m2);
                 else
                     fl2_temp(i).mouse = 'unknown';
