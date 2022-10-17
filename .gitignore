@@ -3,6 +3,9 @@
 
 # Personal setup
 setup.json
+setup_sample.json
+whitelist.json
+blacklist.json
 
 # Compiled mex file
 *.mexw64

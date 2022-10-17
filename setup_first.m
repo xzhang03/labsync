@@ -9,7 +9,7 @@ else
 end
 if recompile
     fprintf('Compiling MD5 Mex file... ');
-    mex('mMD5.mexw64');
+    mex('mMD5.c');
     fprintf('Done.\n');
 end
 
