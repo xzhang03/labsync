@@ -648,12 +648,19 @@ if ~p.rescan_target
     for ii = 1 : length(items)
         % Loading
         fl1_temp = fl1.(items{ii});
-        fl2_temp = fl2.(items{ii});
-        fl3_temp = fl3.(items{ii});
-
-        n2 = length(fl2_temp);
-        n3 = length(fl3_temp);
-
+        if length(fl2)
+            fl2_temp = fl2.(items{ii});
+            n2 = length(fl2_temp);
+        else
+            n2 = 0;
+        end
+        if length(fl3)
+            fl3_temp = fl3.(items{ii});
+            n3 = length(fl3_temp);
+        else
+            n3 = 0;
+        end
+        
         % MD5
         MD5_1 = {fl1_temp(:).md5};
         if n2 > 0
@@ -731,12 +738,19 @@ if p.automoveprep
 
         % Loading
         fl1_temp = fl1_left.(items{ii});
-        fl2_temp = fl2.(items{ii});
-        fl3_temp = fl3.(items{ii});
-
         n1 = length(fl1_temp);
-        n2 = length(fl2_temp);
-        n3 = length(fl3_temp);
+        if length(fl2)
+            fl2_temp = fl2.(items{ii});
+            n2 = length(fl2_temp);
+        else
+            n2 = 0;
+        end
+        if length(fl3)
+            fl3_temp = fl3.(items{ii});
+            n3 = length(fl3_temp);
+        else
+            n3 = 0;
+        end        
 
         fnl1 = length(setup.fp1.(items{ii}));
         fnl2 = length(setup.fp2.(items{ii}));
