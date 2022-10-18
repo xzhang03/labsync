@@ -428,13 +428,13 @@ for ii = 1 : length(items)
     
     % =================== FP3 ===================
     % Loading item
-    if ~p.rescan_source && setup.fp2.enable
+    if ~p.rescan_source && setup.fp3.enable
         fl3_temp = fl3.(items{ii});
         n3 = length(fl3_temp);
     end
     
     % Folder 3
-    if ~p.rescan_source && setup.fp2.enable
+    if ~p.rescan_source && setup.fp3.enable
         tic
         % Loop to find fullnames in fl3
         hwait = waitbar(0, 'Parsing Folder 3');
