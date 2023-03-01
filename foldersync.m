@@ -196,7 +196,7 @@ for ii = 1 : length(items)
         
         % For photometry keep my mice only
         if strcmp(items{ii}, 'photometry')
-            ismyphotometry = regexp({fl2_temp(:).name}, fp2.micename);
+            ismyphotometry = regexp({fl2_temp(:).name}, setup.fp2.micename);
             ismyphotometry = cellfun(@mean, ismyphotometry) == 1;
             fl2_temp = fl2_temp(ismyphotometry);
         end
@@ -232,7 +232,7 @@ for ii = 1 : length(items)
         
         % For photometry keep my mice only
         if strcmp(items{ii}, 'photometry')
-            ismyphotometry = regexp({fl3_temp(:).name}, fp3.micename);
+            ismyphotometry = regexp({fl3_temp(:).name}, setup.fp3.micename);
             ismyphotometry = cellfun(@mean, ismyphotometry) == 1;
             fl3_temp = fl3_temp(ismyphotometry);
         end
@@ -368,31 +368,9 @@ for ii = 1 : length(items)
 
             % Find when mouse folder starts
             if calculatemouse
-                [m1, m2] = regexp(fl2_temp(i).name, setup.mousefolder);
-
-                if ~isempty(m1)
-                    % If regex returns a cell even though the output is a
-                    % single lement get convert the values to a numberic
-                    if length(m1) == 1
-                        m1 = cell2mat(m1);
-                        m2 = cell2mat(m2);
-                    end
-                    fl2_temp(i).mouse = fl2_temp(i).name(m1:m2);
-                else
-                    fl2_temp(i).mouse = 'unknown';
-                end
+                fl2_temp(i).mouse = getmousename(fl2_temp(i).name, setup.mousefolder);
             elseif calculatemousefrompath
-                [m1, m2] = regexp(fl2_temp(i).folder, setup.mousefolder);
-                if ~isempty(m1)
-                    if length(m1) > 1
-                        m1 = m1(1);
-                        m2 = m2(1);
-                    end
-                    fl2_temp(i).mouse = fl2_temp(i).folder(m1:m2);
-                else
-                    fl2_temp(i).mouse = 'unknown';
-                end
-
+                fl2_temp(i).mouse = getmousename(fl2_temp(i).folder, setup.mousefolder);
             else
                 % Just the parent folder
                 m1 = strfind(fl2_temp(i).folder,'\');
@@ -428,13 +406,13 @@ for ii = 1 : length(items)
     
     % =================== FP3 ===================
     % Loading item
-    if ~p.rescan_source && setup.fp3.enable
+    if ~p.rescan_source && setup.fp2.enable
         fl3_temp = fl3.(items{ii});
         n3 = length(fl3_temp);
     end
     
     % Folder 3
-    if ~p.rescan_source && setup.fp3.enable
+    if ~p.rescan_source && setup.fp2.enable
         tic
         % Loop to find fullnames in fl3
         hwait = waitbar(0, 'Parsing Folder 3');
@@ -445,25 +423,9 @@ for ii = 1 : length(items)
 
             % Find when mouse folder starts
             if calculatemouse
-                [m1, m2] = regexp(fl3_temp(i).name, setup.mousefolder);
-
-                if ~isempty(m1)
-                    fl3_temp(i).mouse = fl3_temp(i).name(m1:m2);
-                else
-                    fl3_temp(i).mouse = 'unknown';
-                end
+                fl3_temp(i).mouse = getmousename(fl3_temp(i).name, setup.mousefolder);
             elseif calculatemousefrompath
-                [m1, m2] = regexp(fl3_temp(i).folder, setup.mousefolder);
-                if ~isempty(m1)
-                    if length(m1) > 1
-                        m1 = m1(end);
-                        m2 = m2(end);
-                    end
-                    fl3_temp(i).mouse = fl3_temp(i).folder(m1:m2);
-                else
-                    fl3_temp(i).mouse = 'unknown';
-                end
-
+                fl3_temp(i).mouse = getmousename(fl3_temp(i).folder, setup.mousefolder);
             else
                 % Just the parent folder
                 m1 = strfind(fl3_temp(i).folder,'\');
@@ -648,19 +610,12 @@ if ~p.rescan_target
     for ii = 1 : length(items)
         % Loading
         fl1_temp = fl1.(items{ii});
-        if length(fl2)
-            fl2_temp = fl2.(items{ii});
-            n2 = length(fl2_temp);
-        else
-            n2 = 0;
-        end
-        if length(fl3)
-            fl3_temp = fl3.(items{ii});
-            n3 = length(fl3_temp);
-        else
-            n3 = 0;
-        end
-        
+        fl2_temp = fl2.(items{ii});
+        fl3_temp = fl3.(items{ii});
+
+        n2 = length(fl2_temp);
+        n3 = length(fl3_temp);
+
         % MD5
         MD5_1 = {fl1_temp(:).md5};
         if n2 > 0
@@ -738,19 +693,12 @@ if p.automoveprep
 
         % Loading
         fl1_temp = fl1_left.(items{ii});
+        fl2_temp = fl2.(items{ii});
+        fl3_temp = fl3.(items{ii});
+
         n1 = length(fl1_temp);
-        if length(fl2)
-            fl2_temp = fl2.(items{ii});
-            n2 = length(fl2_temp);
-        else
-            n2 = 0;
-        end
-        if length(fl3)
-            fl3_temp = fl3.(items{ii});
-            n3 = length(fl3_temp);
-        else
-            n3 = 0;
-        end        
+        n2 = length(fl2_temp);
+        n3 = length(fl3_temp);
 
         fnl1 = length(setup.fp1.(items{ii}));
         fnl2 = length(setup.fp2.(items{ii}));
@@ -818,15 +766,23 @@ if p.rescan_target || p.automoveprep
         n1 = length(fl1_temp);
         
         if setup.fp2.enable
-            fl2_temp = fl2.(items{ii});
-            n2 = length(fl2_temp);
+            if isfield(fl2, items{ii})
+                fl2_temp = fl2.(items{ii});
+                n2 = length(fl2_temp);
+            else
+                n2 = 0;
+            end
         else
             n2 = 0;
         end
         
         if setup.fp3.enable
-            fl3_temp = fl3.(items{ii});
-            n3 = length(fl3_temp);
+            if isfield(fl2, items{ii})
+                fl3_temp = fl3.(items{ii});
+                n3 = length(fl3_temp);
+            else
+                n3 = 0;
+            end
         else
             n3 = 0;
         end
@@ -967,6 +923,10 @@ fid = fopen(fullfile(fp, freport), 'w');
 for ii = 1 : length(items)
     % Loading
     fl1_temp = fl1_left.(items{ii});
+    
+    if isempty(fl1_temp)
+        continue;
+    end
     
     % Remove matched in the rescan target mode
     if p.rescan_target

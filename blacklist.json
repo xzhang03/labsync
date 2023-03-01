@@ -2,6 +2,9 @@
     "mice": 
         [
             "None",
-            "Null"
+            "Null",
+            "SZ00",
+            "SZ0",
+            "SZ000"
         ]
 }

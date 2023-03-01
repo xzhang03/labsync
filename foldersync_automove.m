@@ -6,6 +6,7 @@ load(fullfile(fp, fn), 'fl1_left');
 
 %% Basic
 items = {'twop', 'photometry', 'histology', 'videos', 'ephys'};
+% items = {'histology'};
 for ii = 1 : length(items)
     if isempty(fl1_left.(items{ii}))
         continue;
