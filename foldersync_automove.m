@@ -1,4 +1,4 @@
-% Get previoud report
+% Get previous report
 clear
 reportfp = 'D:\User Folders\Stephen\File matching\stephen sync\';
 [fn, fp] = uigetfile(fullfile(reportfp, '*.mat'));
